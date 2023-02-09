@@ -1,0 +1,129 @@
+Index: lambda/src/main/java/task/OrangeTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package task;\n\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class OrangeTest {\n    public static void main(String[] args) {\n\n        List<Orange> inventory = new ArrayList<>();\n        inventory.add(new Orange(300,Color.GREEN));\n        inventory.add(Orange.builder().weight(200).color(Color.GREEN).build());\n        inventory.add(Orange.builder().weight(100).color(Color.RED).build());\n        inventory.add(Orange.builder().weight(500).color(Color.RED).build());\n        inventory.add(Orange.builder().weight(300).color(Color.GREEN).build());\n\n        OrangeFormatter simpleFormatter = orange -> \"An orange of \" + orange.getWeight() + \"g\";\n//        prettyPrintApple(inventory,simpleFormatter);\n\n        prettyPrintApple(inventory,orange -> \"An orange of \" + orange.getWeight() + \"g\");\n\n        System.out.println(\"*************\");\n\n        OrangeFormatter fancyFormatter = orange -> {\n            String characteristic = orange.getWeight()>150 ? \"Heavy\" : \"Light\";\n            return \"A \" + characteristic + \" \" + orange.getColor() + \" orange\";\n        };\n\n        prettyPrintApple(inventory,fancyFormatter);\n\n\n\n\n\n\n\n\n\n    }\n\n    private static void prettyPrintApple(List<Orange> inventory,OrangeFormatter orangeFormatter){\n        for(Orange orange : inventory){\n            String output = orangeFormatter.accept(orange);\n            System.out.println(output);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lambda/src/main/java/task/OrangeTest.java b/lambda/src/main/java/task/OrangeTest.java
+--- a/lambda/src/main/java/task/OrangeTest.java	(revision 07d74a59cc4982a5cbad8b7667f2d9e5cc5bfbeb)
++++ b/lambda/src/main/java/task/OrangeTest.java	(date 1675442315219)
+@@ -28,13 +28,6 @@
+         prettyPrintApple(inventory,fancyFormatter);
+ 
+ 
+-
+-
+-
+-
+-
+-
+-
+     }
+ 
+     private static void prettyPrintApple(List<Orange> inventory,OrangeFormatter orangeFormatter){
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"JavaScriptSettings\">\n    <option name=\"languageLevel\" value=\"ES6\" />\n  </component>\n  <component name=\"MavenProjectsManager\">\n    <option name=\"originalFiles\">\n      <list>\n        <option value=\"$PROJECT_DIR$/java-oop-warmup/pom.xml\" />\n        <option value=\"$PROJECT_DIR$/oop-review/pom.xml\" />\n        <option value=\"$PROJECT_DIR$/generics/pom.xml\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" default=\"true\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\" />\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 07d74a59cc4982a5cbad8b7667f2d9e5cc5bfbeb)
++++ b/.idea/misc.xml	(date 1674689024523)
+@@ -9,8 +9,10 @@
+         <option value="$PROJECT_DIR$/java-oop-warmup/pom.xml" />
+         <option value="$PROJECT_DIR$/oop-review/pom.xml" />
+         <option value="$PROJECT_DIR$/generics/pom.xml" />
++        <option value="$PROJECT_DIR$/lambda/pom.xml" />
++        <option value="$PROJECT_DIR$/collection-review/pom.xml" />
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"CompilerConfiguration\">\n    <option name=\"USE_RELEASE_OPTION\" value=\"false\" />\n    <annotationProcessing>\n      <profile default=\"true\" name=\"Default\" enabled=\"true\" />\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\n        <outputRelativeToContentRoot value=\"true\" />\n        <module name=\"generics\" />\n        <module name=\"oop-review\" />\n      </profile>\n    </annotationProcessing>\n    <bytecodeTargetLevel target=\"8\">\n      <module name=\"generics\" target=\"1.8\" />\n      <module name=\"oop-review\" target=\"11\" />\n    </bytecodeTargetLevel>\n  </component>\n  <component name=\"JavacSettings\">\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\n      <module name=\"oop-review\" options=\"-parameters\" />\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision 07d74a59cc4982a5cbad8b7667f2d9e5cc5bfbeb)
++++ b/.idea/compiler.xml	(date 1674689024520)
+@@ -8,12 +8,16 @@
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+         <outputRelativeToContentRoot value="true" />
+-        <module name="generics" />
+         <module name="oop-review" />
++        <module name="lambda" />
++        <module name="generics" />
++        <module name="collection-review" />
+       </profile>
+     </annotationProcessing>
+     <bytecodeTargetLevel target="8">
++      <module name="collection-review" target="11" />
+       <module name="generics" target="1.8" />
++      <module name="lambda" target="11" />
+       <module name="oop-review" target="11" />
+     </bytecodeTargetLevel>
+   </component>
+Index: lambda/src/main/java/task/CherryPick.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lambda/src/main/java/task/CherryPick.java b/lambda/src/main/java/task/CherryPick.java
+new file mode 100644
+--- /dev/null	(date 1675177290929)
++++ b/lambda/src/main/java/task/CherryPick.java	(date 1675177290929)
+@@ -0,0 +1,5 @@
++package task;
++
++public interface CherryPick {
++    boolean test(Cherry cherry);
++}
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectModuleManager\">\n    <modules>\n      <module fileurl=\"file://$PROJECT_DIR$/generics/generics.iml\" filepath=\"$PROJECT_DIR$/generics/generics.iml\" />\n      <module fileurl=\"file://$PROJECT_DIR$/.idea/java-review.iml\" filepath=\"$PROJECT_DIR$/.idea/java-review.iml\" />\n      <module fileurl=\"file://$PROJECT_DIR$/oop-review/oop-review.iml\" filepath=\"$PROJECT_DIR$/oop-review/oop-review.iml\" />\n    </modules>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+--- a/.idea/modules.xml	(revision 07d74a59cc4982a5cbad8b7667f2d9e5cc5bfbeb)
++++ b/.idea/modules.xml	(date 1674689024515)
+@@ -2,8 +2,10 @@
+ <project version="4">
+   <component name="ProjectModuleManager">
+     <modules>
++      <module fileurl="file://$PROJECT_DIR$/collection-review/collection-review.iml" filepath="$PROJECT_DIR$/collection-review/collection-review.iml" />
+       <module fileurl="file://$PROJECT_DIR$/generics/generics.iml" filepath="$PROJECT_DIR$/generics/generics.iml" />
+       <module fileurl="file://$PROJECT_DIR$/.idea/java-review.iml" filepath="$PROJECT_DIR$/.idea/java-review.iml" />
++      <module fileurl="file://$PROJECT_DIR$/lambda/lambda.iml" filepath="$PROJECT_DIR$/lambda/lambda.iml" />
+       <module fileurl="file://$PROJECT_DIR$/oop-review/oop-review.iml" filepath="$PROJECT_DIR$/oop-review/oop-review.iml" />
+     </modules>
+   </component>
+Index: lambda/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n\n    <groupId>org.example</groupId>\n    <artifactId>lambda</artifactId>\n    <version>1.0-SNAPSHOT</version>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.projectlombok</groupId>\n            <artifactId>lombok</artifactId>\n            <version>1.18.22</version>\n        </dependency>\n    </dependencies>\n\n    <properties>\n        <maven.compiler.source>11</maven.compiler.source>\n        <maven.compiler.target>11</maven.compiler.target>\n    </properties>\n\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lambda/pom.xml b/lambda/pom.xml
+--- a/lambda/pom.xml	(revision 07d74a59cc4982a5cbad8b7667f2d9e5cc5bfbeb)
++++ b/lambda/pom.xml	(date 1674744924689)
+@@ -9,6 +9,7 @@
+     <version>1.0-SNAPSHOT</version>
+ 
+     <dependencies>
++
+         <dependency>
+             <groupId>org.projectlombok</groupId>
+             <artifactId>lombok</artifactId>
